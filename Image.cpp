@@ -80,11 +80,19 @@ void Image::filterRed() {
 }
 
 void Image::filterGreen() {
-
+    for (int i = 0; i < w*h; i++) {
+        pixels[i].r = 0;
+        pixels[i].g =  ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b))/3;
+        pixels[i].b = 0;
+    }
 }
 
 void Image::filterBlue() {
-
+    for (int i = 0; i < w*h; i++) {
+        pixels[i].r = 0;
+        pixels[i].g =  0;
+        pixels[i].b = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b))/3;
+    }
 }
 
 void Image::greyScale() {

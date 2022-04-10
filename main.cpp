@@ -3,7 +3,7 @@
 #include <string.h>
 #include <map>
 #include "UsefulFunctions.h"
-
+//DONT TOUCH
 using namespace std;
 // Global variables
 #define IDM_FILE_SAVE 1

@@ -15,9 +15,9 @@ using namespace std;
 struct Rgb
 {
     Rgb() : r(1), g(1), b(1)  {}
-    Rgb(float rr) : r(rr), g(rr), b(rr) {}
-    Rgb(float rr, float gg, float bb) : r(rr), g(gg), b(bb) {}
-    float r, g, b;
+    Rgb(unsigned char rr) : r(rr), g(rr), b(rr) {}
+    Rgb(unsigned char rr, unsigned char gg, unsigned char bb) : r(rr), g(gg), b(bb) {}
+    unsigned char r, g, b;
 };
 
 class Image {

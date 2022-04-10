@@ -71,7 +71,11 @@ bool Image::savePPM(string filename)
 
 
 void Image::filterRed() {
-
+    for (int i = 0; i < w*h; i++) {
+        pixels[i].r = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b))/3;
+        pixels[i].g =  0;
+        pixels[i].b = 0;
+    }
 
 }
 

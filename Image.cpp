@@ -40,13 +40,15 @@ bool Image::loadRaw(string filename) {
 }
 
 bool Image::savePPM(string filename) {
-    if (this->w == 0 || this->h == 0) { fprintf(stderr, "Can't save an empty image\n"); return false; }
+    if (this->w == 0 || this->h == 0) {
+        fprintf(stderr, "Can't save an empty image\n");
+        return false;
+    }
     std::ofstream ofs;
     try {
         ofs.open(filename, std::ios::binary); // need to spec. binary mode for Windows users
-        if (ofs.fail())
-        {
-            throw("Can't open output file");
+        if (ofs.fail()) {
+            throw ("Can't open output file");
             return false;
         }
         ofs << "P6\n" << this->w << " " << this->h << "\n255\n";
@@ -70,33 +72,32 @@ bool Image::savePPM(string filename) {
 
 
 void Image::filterRed() {
-    for (int i = 0; i < w*h; i++) {
-        pixels[i].r = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b))/3;
-        pixels[i].g =  0;
+    for (int i = 0; i < w * h; i++) {
+        pixels[i].r = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b)) / 3;
+        pixels[i].g = 0;
         pixels[i].b = 0;
     }
 }
 
 void Image::filterGreen() {
-    for (int i = 0; i < w*h; i++) {
+    for (int i = 0; i < w * h; i++) {
         pixels[i].r = 0;
-        pixels[i].g =  ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b))/3;
+        pixels[i].g = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b)) / 3;
         pixels[i].b = 0;
     }
 }
 
 void Image::filterBlue() {
-    for (int i = 0; i < w*h; i++) {
+    for (int i = 0; i < w * h; i++) {
         pixels[i].r = 0;
-        pixels[i].g =  0;
-        pixels[i].b = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b))/3;
+        pixels[i].g = 0;
+        pixels[i].b = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b)) / 3;
     }
 }
 
 void Image::greyScale() {
-    for (int i = 0; i < w*h; i++)
-    {
-        unsigned char greyscaleValue = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b))/3;
+    for (int i = 0; i < w * h; i++) {
+        unsigned char greyscaleValue = ((this->pixels[i].r) + (this->pixels[i].g) + (this->pixels[i].b)) / 3;
         this->pixels[i].r = greyscaleValue;
         this->pixels[i].g = greyscaleValue;
         this->pixels[i].b = greyscaleValue;
@@ -119,20 +120,21 @@ void Image::flipHorizontal() {
             //thats why we want to just change the x value we store in tempPixel
             tempPixel = x + y * w;
 
-            tempPixel1 = (w - 1 - 1) + y * w;
+            tempPixel1 = (w - 1 - x) + y * w;
 
 
             //store r value from r value of (5,0)
+
             pixels[0] = this->pixels[tempPixel].r;
             pixels[1] = this->pixels[tempPixel].g;
             pixels[2] = this->pixels[tempPixel].b;
 
-            //r value at (5,0) will be (R VALUE FROM (1,0)?)
+            //r value at (5,0) will be (R VALUE FROM (0,0)?)
             this->pixels[tempPixel].r = this->pixels[tempPixel1].r;
             this->pixels[tempPixel].g = this->pixels[tempPixel1].g;
             this->pixels[tempPixel].b = this->pixels[tempPixel1].b;
 
-            //R VALUE AT (1,0) WILL BE (R VALUE FROM line 126-128 we stored r value of(5,0))
+            //R VALUE AT (0,0) WILL BE (R VALUE FROM line 128-130 we stored? r value of(5,0))
             this->pixels[tempPixel1].r = pixels[0];
             this->pixels[tempPixel1].g = pixels[1];
             this->pixels[tempPixel1].b = pixels[2];
@@ -210,16 +212,34 @@ void Image::AdditionalFunction3() {
 }
 
 void Image::AdvanceFeature() {
+    unsigned char output;
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+
+            //loop through each value and can either be black white or original rgb value
+            int randomNum01 = rand() % 100;
+            if (randomNum01 < 5) {
+                int randomNum02 = rand() % 2;
+                if (randomNum02 == 0) output = 0;
+                else output = 255;
+
+                    this->pixels[y * w + x].r = output;
+                    this->pixels[y * w + x].g = output;
+                    this->pixels[y * w + x].b = output;
+
+            }
+        }
+    }
 
 }
 
 void Image::GammaEncode() {
 
-    for (int i = 0; i < w*h; ++i) {
+    for (int i = 0; i < w * h; ++i) {
 
-            pixels[i].r = powf(pixels[i].r/255.f, 1/2.2) * 255 + 0.5f;
-            pixels[i].g = powf(pixels[i].g/255.f, 1/2.2) * 255 + 0.5f;
-            pixels[i].b = powf(pixels[i].b/255.f, 1/2.2) * 255 + 0.5f;
+        pixels[i].r = powf(pixels[i].r / 255.f, 1 / 2.2) * 255 + 0.5f;
+        pixels[i].g = powf(pixels[i].g / 255.f, 1 / 2.2) * 255 + 0.5f;
+        pixels[i].b = powf(pixels[i].b / 255.f, 1 / 2.2) * 255 + 0.5f;
 
 
     }

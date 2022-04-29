@@ -67,7 +67,9 @@ public:
     //invert
     void AdditionalFunction3();
 
-    void gammaEncoding();
+    void AdvanceFeature();
+
+    void GammaEncode();
 
     /*Functions used in the GUI - DO NOT MODIFY */
     Rgb *getImage();

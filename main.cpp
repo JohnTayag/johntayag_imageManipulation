@@ -21,7 +21,8 @@ using namespace std;
 #define IDM_EDIT_AD2 12
 #define IDM_EDIT_AD3 13
 #define IDM_FILE_LOAD_RAW 14
-#define IDM_FILE_GammaEncoding 15
+#define IDM_FILE_AdvanceFeature 15
+#define IDM_FILE_GammaEncode 16
 string current_file;
 string fileType;
 // The main window class name.
@@ -53,7 +54,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_AD1, L"&Additional Function 1"); // Copy this line to add
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_AD2, L"&Additional Function 2"); // Copy this line to add
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_AD3, L"&Additional Function 3"); // Copy this line to add
-    AppendMenuW(Alter, MF_STRING, IDM_FILE_GammaEncoding, L"&Gamma Encoding"); // Copy this line to add
+    AppendMenuW(Alter, MF_STRING, IDM_FILE_AdvanceFeature, L"&Advance Feature"); // Copy this line to add
+    AppendMenuW(Alter, MF_STRING, IDM_FILE_GammaEncode, L"&Gamma Encode"); // Copy this line to add
     // Copy this line to add
 
 
@@ -116,9 +118,14 @@ void processMenu(HWND hWnd, WPARAM wParam) {
             image->load(current_file);
             image->filterBlue();
             break;
-        case IDM_FILE_GammaEncoding:
+        case IDM_FILE_AdvanceFeature:
             image->load(current_file);
-            image->gammaEncoding();
+            image->AdvanceFeature();
+            break;
+
+        case IDM_FILE_GammaEncode:
+            image->load(current_file);
+            image->GammaEncode();
             break;
         case IDM_EDIT_AD1:
 

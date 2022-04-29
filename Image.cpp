@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <cstring>
 #include "Image.h"
-
+#include <cmath>
 
 bool Image::load(string filename) {
     ifstream ifs(filename, std::ios::binary);
@@ -118,23 +118,21 @@ void Image::flipHorizontal() {
             //we dont care about the y value
             //thats why we want to just change the x value we store in tempPixel
             tempPixel = x + y * w;
-            //1. 5-1-0 = 4, 4+0*5
-            tempPixel1 = (w - 1 - x) + y * w;
 
-            //(r,g,b) red value at (0,0) will equal to red value at (4,0) position(because of this->pixels[tempPixel].r)
-            //or
-            //store r value from r value of (4,0)
+            tempPixel1 = (w - 1 - 1) + y * w;
 
+
+            //store r value from r value of (5,0)
             pixels[0] = this->pixels[tempPixel].r;
             pixels[1] = this->pixels[tempPixel].g;
             pixels[2] = this->pixels[tempPixel].b;
 
-            //r value at (4,0) will be (R VALUE FROM (0,0)?)
+            //r value at (5,0) will be (R VALUE FROM (1,0)?)
             this->pixels[tempPixel].r = this->pixels[tempPixel1].r;
             this->pixels[tempPixel].g = this->pixels[tempPixel1].g;
             this->pixels[tempPixel].b = this->pixels[tempPixel1].b;
 
-            //R VALUE AT (0,0) WILL BE (R VALUE FROM line 86-88 we stored? r value of(4,0))
+            //R VALUE AT (1,0) WILL BE (R VALUE FROM line 126-128 we stored r value of(5,0))
             this->pixels[tempPixel1].r = pixels[0];
             this->pixels[tempPixel1].g = pixels[1];
             this->pixels[tempPixel1].b = pixels[2];
@@ -211,20 +209,20 @@ void Image::AdditionalFunction3() {
     }
 }
 
-void Image::gammaEncoding(
-//        const std::pair &shift
-) {
-//    Image tmp(img.w, img.h);
-//    int w = img.w, h = img.h;
-//    for (int j = 0; j < h; ++j) {
-//        int mod = (j + shift.second) % h;
-//        for (int i = 0; i < w; ++i) {
-//            int imod = (i + shift.first) % w;
-//            tmp[jmod * w + imod] = img[j * w + i];
-//        }
-//    }
-//
-//    return tmp;
+void Image::AdvanceFeature() {
+
+}
+
+void Image::GammaEncode() {
+
+    for (int i = 0; i < w*h; ++i) {
+
+            pixels[i].r = powf(pixels[i].r/255.f, 1/2.2) * 255 + 0.5f;
+            pixels[i].g = powf(pixels[i].g/255.f, 1/2.2) * 255 + 0.5f;
+            pixels[i].b = powf(pixels[i].b/255.f, 1/2.2) * 255 + 0.5f;
+
+
+    }
 }
 
 void Image::AdditionalFunction1() {

@@ -61,9 +61,13 @@ public:
 
     void AdditionalFunction1();
 
-    void AdditionalFunction2();
+    //crop
+    void AdditionalFunction2(int cx, int cy, int cw, int ch);
 
+    //invert
     void AdditionalFunction3();
+
+    void gammaEncoding();
 
     /*Functions used in the GUI - DO NOT MODIFY */
     Rgb *getImage();

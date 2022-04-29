@@ -211,7 +211,9 @@ void Image::AdditionalFunction3() {
     }
 }
 
-//void Image::gammaEncoding(const std::pair &shift) {
+void Image::gammaEncoding(
+//        const std::pair &shift
+) {
 //    Image tmp(img.w, img.h);
 //    int w = img.w, h = img.h;
 //    for (int j = 0; j < h; ++j) {
@@ -223,7 +225,7 @@ void Image::AdditionalFunction3() {
 //    }
 //
 //    return tmp;
-//}
+}
 
 void Image::AdditionalFunction1() {
     // flip upside down

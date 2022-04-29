@@ -27,8 +27,7 @@ string fileType;
 Image *image;
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
-        _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
-{
+                   _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
     image = new Image();
 
     HMENU hMenubar = CreateMenu(); // The main menu bar
@@ -43,7 +42,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     AppendMenuW(hMenu, MF_STRING, IDM_FILE_QUIT, L"&Quit");
 
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_Greyscale, L"&Greyscale"); // Copy this line to add
-                                                                                                 // more items to the Edit menu;
+    // more items to the Edit menu;
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_FlipHorizontal, L"&Flip Horizontal"); // Copy this line to add
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_FlipVertical, L"&Flip Vertical"); // Copy this line to add
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_FilterRed, L"&Show Only Red"); // Copy this line to add
@@ -53,12 +52,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_AD1, L"&Additional Function 1"); // Copy this line to add
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_AD2, L"&Additional Function 2"); // Copy this line to add
     AppendMenuW(Alter, MF_STRING, IDM_EDIT_AD3, L"&Additional Function 3"); // Copy this line to add
-     // Copy this line to add
+    // Copy this line to add
 
 
 
-    AppendMenuW(hMenubar, MF_POPUP, (UINT_PTR)hMenu, L"&File");
-    AppendMenuW(hMenubar, MF_POPUP, (UINT_PTR)Alter, L"&Edit");
+    AppendMenuW(hMenubar, MF_POPUP, (UINT_PTR) hMenu, L"&File");
+    AppendMenuW(hMenubar, MF_POPUP, (UINT_PTR) Alter, L"&Edit");
 
     int ret = createWindow(hInstance, nCmdShow, hMenubar);
 
@@ -66,51 +65,47 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     return ret;
 }
 
-void processMenu(HWND hWnd, WPARAM wParam)
-{
-    switch(LOWORD(wParam)) {
+void processMenu(HWND hWnd, WPARAM wParam) {
+    switch (LOWORD(wParam)) {
         case IDM_FILE_OPEN:
             current_file = openfilename("Image (*.ppm)\0*.ppm\0\0", hWnd);
             fileType = "ppm";
-            if(!image->load(current_file))
-            {
+            if (!image->load(current_file)) {
                 MessageBox(NULL, _T("Error Loading image! Please try again"),
-                           _T("Load Error"),0);
+                           _T("Load Error"), 0);
             }
             break;
         case IDM_FILE_LOAD_RAW:
             current_file = openfilename("Image (*.raw)\0*.raw\0\0", hWnd);
             fileType = "raw";
-            if(!image->loadRaw(current_file))
-            {
+            if (!image->loadRaw(current_file)) {
                 MessageBox(NULL, _T("Error Loading image! Please try again"),
-                           _T("Load Error"),0);
+                           _T("Load Error"), 0);
             }
             break;
         case IDM_FILE_SAVE: {
             string f = saveFilename("Image (*.ppm)\0*.ppm\0\0", hWnd);
-            if(!image->savePPM(f))
-            {
+            if (!image->savePPM(f)) {
                 MessageBox(NULL, _T("Error saving image! Please try again"),
-                           _T("Save Error"),0);
+                           _T("Save Error"), 0);
             }
             break;
         }
         case IDM_EDIT_Greyscale:
             image->load(current_file);
             image->greyScale(); //comment
-             break;
+            break;
         case IDM_EDIT_FlipHorizontal:
             //image.load(current_file);
             image->flipHorizontal();
             break;
         case IDM_EDIT_FlipVertical:
-             image->flipVertically();
-             break;
+            image->flipVertically();
+            break;
         case IDM_EDIT_FilterRed:
-             image->load(current_file);
-             image->filterRed();
-             break;
+            image->load(current_file);
+            image->filterRed();
+            break;
         case IDM_EDIT_FilterGreen:
             image->load(current_file);
             image->filterGreen();
@@ -132,12 +127,9 @@ void processMenu(HWND hWnd, WPARAM wParam)
             image->AdditionalFunction3();
             break;
         case IDM_EDIT_Reset:
-            if(fileType=="ppm")
-            {
+            if (fileType == "ppm") {
                 image->load(current_file);
-            }
-            else
-            {
+            } else {
                 image->loadRaw(current_file);
             }
 
@@ -147,32 +139,29 @@ void processMenu(HWND hWnd, WPARAM wParam)
             SendMessage(hWnd, WM_CLOSE, 0, 0);
             break;
     }
-    SetWindowPos(hWnd, NULL, 0,0,image->getWidth()+20, image->getHeight()+60,SWP_NOMOVE);
+    SetWindowPos(hWnd, NULL, 0, 0, image->getWidth() + 20, image->getHeight() + 60, SWP_NOMOVE);
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 
 }
 
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     PAINTSTRUCT ps;
     HDC hdc;
 
     RECT *rect = new RECT();
 
 
-    switch (message)
-    {
+    switch (message) {
         case WM_PAINT:
             hdc = BeginPaint(hWnd, &ps);
 /*
 */
             rect->top = 0;
-            rect->left=0;
+            rect->left = 0;
             rect->bottom = image->getHeight();
             rect->right = image->getWidth();
             dblBuffer(hWnd, hdc, rect, image);
-
 
 
             EndPaint(hWnd, &ps);

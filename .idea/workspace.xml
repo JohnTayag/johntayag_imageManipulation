@@ -11,8 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3990b7e7-e13e-40b1-a881-8f850d65742d" name="Changes" comment="greyscale">
+    <list default="true" id="3990b7e7-e13e-40b1-a881-8f850d65742d" name="Changes" comment="filter green&#10;filter blue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Image.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Image.h" beforeDir="false" afterPath="$PROJECT_DIR$/Image.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tests" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="WindowsApplication" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="WindowsApplication" TARGET_NAME="WindowsApplication" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="WindowsApplication" RUN_TARGET_NAME="WindowsApplication">
@@ -69,7 +72,15 @@
       <workItem from="1649595947685" duration="5108000" />
       <workItem from="1649625910446" duration="352000" />
       <workItem from="1649626299179" duration="435000" />
-      <workItem from="1649626782733" duration="148000" />
+      <workItem from="1649626782733" duration="416000" />
+      <workItem from="1649627219861" duration="69000" />
+      <workItem from="1649627317344" duration="3000" />
+      <workItem from="1650048214439" duration="1000" />
+      <workItem from="1650121683729" duration="163000" />
+      <workItem from="1650124368530" duration="514000" />
+      <workItem from="1650491124326" duration="26000" />
+      <workItem from="1650669161709" duration="116000" />
+      <workItem from="1651228683327" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="Save ppm file">
       <created>1649626395824</created>
@@ -92,7 +103,28 @@
       <option name="project" value="LOCAL" />
       <updated>1649626679636</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="greyscale">
+      <created>1649626940885</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1649626940885</updated>
+    </task>
+    <task id="LOCAL-00005" summary="filter red">
+      <created>1649627058465</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1649627058465</updated>
+    </task>
+    <task id="LOCAL-00006" summary="filter green&#10;filter blue">
+      <created>1649627120215</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1649627120215</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +144,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Save ppm file" />
     <MESSAGE value="greyscale" />
-    <option name="LAST_COMMIT_MESSAGE" value="greyscale" />
+    <MESSAGE value="filter red" />
+    <MESSAGE value="filter green&#10;filter blue" />
+    <option name="LAST_COMMIT_MESSAGE" value="filter green&#10;filter blue" />
   </component>
 </project>
